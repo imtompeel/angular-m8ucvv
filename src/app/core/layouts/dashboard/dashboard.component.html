@@ -1,0 +1,101 @@
+<aside class="aside" [ngClass]="{ 'aside-folded': sidebarCollapse }">
+    <div class="logo">
+        <img src="assets/logo/icon-text-logo-white.png"/>
+        <label class="city-name" *ngIf="userType==='festival'">{{ currentCity?.name }}</label>
+        <label class="city-name" *ngIf="userType==='venue'">{{ currentVenue?.name }}</label>
+    </div>
+
+    
+    <div class="select-city mb-0" *ngIf="userType==='super'">
+        <label>Festival</label>
+        <ng-select 
+            [(ngModel)]="selectedCity"
+            placeholder="Select City" 
+            [items]="cities"
+            bindLabel="name"
+            bindValue="key"
+            [searchable]="true"
+            [multiple]="false"
+            [clearable]="false"
+            (change)="changedCity()"
+        ></ng-select>
+    </div>
+
+
+    <nav class="d-flex flex-column flex-grow-1 justify-content-between">
+        <ul class="nav flex-column mt-3">
+            <li class="nav-item">
+                <p class="nav-header text-uppercase small font-weight-bold text-muted mb-2">Menu</p>
+            </li>
+            <li class="nav-item" *ngIf="userType!=='venue'">
+                <a class="nav-link" [routerLink]="['/venues']" [routerLinkActive]="['active']">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12,23L1,12L12,1L23,12Z" stroke="none" />
+                    </svg>
+                    <span class="ml-3">Venues</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/records']" [routerLinkActive]="['active']">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="none" />
+                    </svg>
+                    <span class="ml-3">Recordings</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="userType==='super'">
+                <a class="nav-link" [routerLink]="['/cities']" [routerLinkActive]="['active']">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M15,23H13V21H15V23M19,21H17V23H19V21M15,17H13V19H15V17M7,21H5V23H7V21M7,17H5V19H7V17M19,17H17V19H19V17M15,13H13V15H15V13M19,13H17V15H19V13M21,9A2,2 0 0,1 23,11V23H21V11H11V23H9V15H3V23H1V15A2,2 0 0,1 3,13H9V11A2,2 0 0,1 11,9V7A2,2 0 0,1 13,5H15V1H17V5H19A2,2 0 0,1 21,7V9M19,9V7H13V9H19Z" stroke="none" />
+                    </svg>
+                    <span class="ml-3">Festivals</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="userType==='super'">
+                <a class="nav-link" [routerLink]="['/users']" [routerLinkActive]="['active']">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M15,23H13V21H15V23M19,21H17V23H19V21M15,17H13V19H15V17M7,21H5V23H7V21M7,17H5V19H7V17M19,17H17V19H19V17M15,13H13V15H15V13M19,13H17V15H19V13M21,9A2,2 0 0,1 23,11V23H21V11H11V23H9V15H3V23H1V15A2,2 0 0,1 3,13H9V11A2,2 0 0,1 11,9V7A2,2 0 0,1 13,5H15V1H17V5H19A2,2 0 0,1 21,7V9M19,9V7H13V9H19Z" stroke="none" />
+                    </svg>
+                    <span class="ml-3">Users</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="nav flex-column mt-3">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:;" (click)="collapseSidebar()">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M11.92,19.92L4,12L11.92,4.08L13.33,5.5L7.83,11H22V13H7.83L13.34,18.5L11.92,19.92M4,12V2H2V22H4V12Z" stroke="none" *ngIf="!sidebarCollapse" />
+                        <path d="M12.08,4.08L20,12L12.08,19.92L10.67,18.5L16.17,13H2V11H16.17L10.67,5.5L12.08,4.08M20,12V22H22V2H20V12Z" stroke="none" *ngIf="sidebarCollapse" />
+                    </svg>
+                    <span class="ml-3">Collapse</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<main class="main" role="main">
+    <header class="header" role="banner" id="main-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container h-100">
+                <div class="collapse navbar-collapse">
+
+                    <ul class="navbar-nav ml-auto flex-row align-items-center">
+                        <li class="nav-item dropdown" dropdown>
+                            <a class="d-flex align-items-center text-danger" [routerLink]="['/signin']">
+                                <svg class="icon fill-danger-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19Z" stroke="none"></path>
+                                </svg>
+                                <span class="ml-3">Sign out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="content" role="contentinfo">
+        <router-outlet></router-outlet>
+    </div>
+</main>

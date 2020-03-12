@@ -1,0 +1,73 @@
+<form class="d-flex flex-column flex-fill" novalidate [formGroup]="formCreate" (ngSubmit)="create(formCreate.value, formCreate.valid)">
+    <div class="modal-header align-items-center">
+        <h4 class="modal-title mr-auto">Create Festival</h4>
+        <a href="javascript:;" (click)="bsModalRef.hide()">
+            <svg class="icon fill-gray-300" viewBox="0 0 24 24">
+                <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" stroke="none" />
+            </svg>
+        </a>
+    </div>
+    <div class="scrollable scrollable-y">
+        <div class="scrollable-main">
+            <div class="scrollable-content">
+                <div class="modal-body">
+                    <div class="mb-3" *ngIf="error$ | async">
+                        <app-alert [type]="'danger'" [message]="(error$ | async)?.message"></app-alert>
+                    </div>
+
+                    <p class="small text-uppercase text-info mb-3">Festival Information</p>
+
+                    <div style="margin-bottom: 24px">
+                        <span class="font-weight-bold text-danger">*</span>
+                        <span class="small font-weight-normal text-danger"> is required field</span>
+                    </div>
+
+                    <!-- City id -->
+                    <div class="form-group">
+                        <label>Unique identifer</label>
+                        <input type="text" class="form-control" formControlName="cityId">
+                    </div>
+
+                    <!-- City Name -->
+                    <div class="form-group">
+                        <label>Name</label><span class="font-weight-bold text-danger">*</span>
+                        <input type="text" class="form-control" formControlName="name">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label>Owner Email</label><span class="font-weight-bold text-danger">*</span>
+                        <input type="text" class="form-control" formControlName="email">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label>Owner Password</label><span class="font-weight-bold text-danger">*</span>
+                        <input type="text" class="form-control" formControlName="password">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link text-body" (click)="bsModalRef.hide()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading || formCreate.invalid">
+            <app-spinner [ngClass]="{'active': isLoading}">Create Festival</app-spinner>
+        </button>
+    </div>
+
+    <ng-template #existUserPopup>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left"><b>{{formCreate.value.email}}</b> is existing user.</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Please use original password for this user.<br> &lt;{{formCreate.value.password}}&gt; password will be ignore.<br>
+        </div>
+    </ng-template>
+      
+</form>
+

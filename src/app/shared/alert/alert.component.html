@@ -1,0 +1,13 @@
+<div class="alert alert-{{ type }} mb-0" *ngIf="type === 'danger'">
+    <div class="d-flex align-items-center">
+        <svg class="icon flex-shrink-0" viewBox="0 0 24 24">
+            <path d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </svg>
+        <div class="ml-2 flex-fill">{{ message }}</div>
+        <button type="button" class="close align-self-start" data-dismiss="alert" *ngIf="closeButton">
+            <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+            </svg>
+        </button>
+    </div>
+</div>

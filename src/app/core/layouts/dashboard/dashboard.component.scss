@@ -1,0 +1,198 @@
+// stylelint-disable selector-max-compound-selectors, selector-max-class, declaration-no-important
+
+@import "functions";
+@import "variables";
+@import "mixins";
+
+:host {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  min-height: 100vh;
+}
+
+:host .main {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+
+  > .content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+}
+
+:host .header {
+  position: relative;
+  display: flex;
+  height: 70px;
+  background-color: $white;
+  border-bottom: $border-width solid $border-color;
+
+  .navbar {
+    flex: 1;
+    padding: 0;
+
+    .form-control-wrapper {
+      width: 280px;
+
+      &.form-control-wrapper-left {
+        > .form-control {
+          padding-left: $input-height;
+          background-color: transparent;
+        }
+
+        > .form-control-action {
+          left: 0;
+        }
+      }
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link > .indicator {
+      position: absolute;
+      top: 7px;
+      right: 17px;
+      z-index: 1;
+      display: block;
+      width: 6px;
+      height: 6px;
+      background-color: theme-color("primary");
+      border-radius: 6px;
+    }
+  }
+}
+
+:host .aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  color: theme-color-level("primary", -11);
+
+  .text-muted {
+    color: theme-color-level("primary", -5) !important;
+  }
+
+  // Gradient background
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+    background-color: theme-color-level("primary", 0);
+    background-image: url("./../../../../assets/images/pages/signin/cloud.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+  }
+
+  // Folded aside
+  &.aside-folded {
+    width: 80px;
+
+    .nav-header {
+      display: none;
+    }
+
+    .nav-link {
+      justify-content: center;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .nav-link > .icon:last-child,
+    .nav-link > span {
+      display: none;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 70px;
+      padding: 0;
+
+      > .logo-figure {
+        width: 38px;
+        height: 38px;
+      }
+
+      > .logo-text {
+        display: none;
+      }
+    }
+  }
+
+  // Logo
+  .logo {
+    padding: map-get($map: $spacers, $key: 5);
+    text-align: center;
+  }
+
+  // Bootstrap nav modification
+  .nav-item {
+    > .nav {
+      .nav-link {
+        padding-top: map-get($map: $spacers, $key: 2);
+        padding-bottom: map-get($map: $spacers, $key: 2);
+
+        @include hover-focus {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .nav-header {
+    padding: 0 map-get($map: $spacers, $key: 4);
+  }
+
+  .nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1rem map-get($map: $spacers, $key: 4);
+    font-weight: $font-weight-medium;
+    color: theme-color-level("primary", -8);
+    fill: theme-color-level("primary", -8);
+
+    @include hover-focus {
+      color: theme-color-level("primary", -11);
+      fill: theme-color-level("primary", -11);
+    }
+
+    &.active {
+      color: theme-color-level("primary", -12);
+      background-color: rgba($black, .1);
+      fill: theme-color-level("primary", -12);
+    }
+
+    > .icon {
+      fill: inherit;
+    }
+
+    > span {
+      flex: 1;
+    }
+  }
+
+  .select-city {
+    display: flex;
+    flex: inherit;
+    flex-direction: column;
+    padding: 0 16px 0 16px;
+  }
+
+  .city-name {
+    text-align: center;
+  }
+}

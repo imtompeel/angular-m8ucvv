@@ -1,0 +1,104 @@
+<div class="container py-5">
+    <div class="row align-items-center">
+        <div class="col mr-auto">
+            <div class="d-flex align-items-end">
+                <h3 class="mb-0 mr-2">Festivals List</h3>
+                <span class="text-muted">({{ cities.length }}) Total</span>
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary" (click)="showModalCreate()">
+                <div class="d-flex align-items-center">
+                    <svg class="icon fill-primary-100" viewBox="0 0 24 24">
+                        <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" stroke="none" />
+                    </svg>
+                    <span class="ml-1">New Festival</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div class="mb-5"></div>
+
+    <ng-container *ngIf="cities.length !== 0">
+        <ngx-datatable class="bootstrap" [rows]="cities" [columnMode]="'force'" [headerHeight]="40" [footerHeight]="40"
+            [rowHeight]="70" [limit]="9" [sorts]="[{prop: 'name', dir: 'asc'}]">
+            <ngx-datatable-column name="Available" prop="isAvailable" resizeable="false" [width]="100"
+                [sortable]="false" [canAutoResize]="false" [draggable]="false">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span class="small text-uppercase font-weight-medium text-muted">{{ column.name }}</span>
+                </ng-template>
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <input type="checkbox" [(ngModel)]="value" (change)="onChangeAvailableCity($event, row, value)">
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Name" prop="name" resizeable="false" [width]="200">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="small text-uppercase font-weight-medium text-muted" (click)="sort()"
+                        style="cursor: pointer;">{{ column.name }}</span>
+                </ng-template>
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <div class="d-flex align-items-center">
+                        <app-avatar [data]="value" [fontSize]="'14px'" [randomColor]="true" [width]="'3rem'"
+                            [height]="'3rem'"></app-avatar>
+                        <div class="ml-3">
+                            <h6 class="mb-0 font-weight-normal multi-line" *ngIf="value; else noUsername;">{{ value }}
+                            </h6>
+                            <ng-template #noUsername>
+                                <h6 class="mb-0 font-weight-normal text-info multi-line">{{ row['name'] }}</h6>
+                            </ng-template>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Owner Email" prop="owner" resizeable="false" [width]="300">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="small text-uppercase font-weight-medium text-muted" (click)="sort()"
+                        style="cursor: pointer;">{{ column.name }}</span>
+                </ng-template>
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <div class="d-flex align-items-center">
+                        <h6 class="mb-0 font-weight-normal multi-line">{{ value }}</h6>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="" prop="" resizeable="false" [cellClass]="'text-right'">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="text-uppercase" (click)="sort()" style="cursor: pointer;">{{ column.name }}</span>
+                </ng-template>
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div class="dropdown" dropdown>
+                        <button class="btn btn-link btn-icon" type="button" dropdownToggle>
+                            <svg class="icon fill-gray-400" viewBox="0 0 24 24">
+                                <path
+                                    d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"
+                                    stroke="none" /></svg>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:;"
+                                (click)="showModalUpdate(row)">
+                                <svg class="icon fill-gray-300" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+                                        stroke="none" /></svg>
+                                <span class="ml-2">Edit</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:;"
+                                (click)="showModalDelete(row)">
+                                <svg class="icon fill-danger-500" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+                                        stroke="none" /></svg>
+                                <span class="ml-2">Delete</span>
+                            </a>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+
+        </ngx-datatable>
+    </ng-container>
+</div>

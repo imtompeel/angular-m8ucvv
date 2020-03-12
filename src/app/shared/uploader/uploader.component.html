@@ -1,0 +1,12 @@
+<div *ngIf="(fileBlob$ | async) === null">
+    <app-avatar [width]="'4.6rem'" [height]="'4.6rem'" [fontSize]="'16px'"></app-avatar>
+</div>
+<div *ngIf="(fileBlob$ | async) !== null">
+    <img class="rounded-circle" [style.width]="'4.6rem'" [style.height]="'4.6rem'" [attr.src]="fileBlob$ | async" title="{{ (fileList$ | async)?.name }}">
+</div>
+<div class="pl-3 flex-grow-1">
+    <button class="btn btn-file btn-secondary">
+        <span>Select File</span>
+        <input type="file" (change)="onChange($event.target.files)">
+    </button>
+</div>

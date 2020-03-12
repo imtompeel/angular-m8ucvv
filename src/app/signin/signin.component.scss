@@ -1,0 +1,185 @@
+@import "functions";
+@import "variables";
+@import "mixins";
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../assets/images/pages/signin/background.png");
+  background-repeat: repeat;
+  background-position: bottom center;
+}
+
+:host .card {
+  overflow: hidden;
+}
+
+:host .yoga-cloud {
+  position: relative;
+  z-index: 8;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 501px;
+  background-image: url("../../assets/images/pages/signin/cloud.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: cover;
+}
+
+:host .yoga-girl {
+  position: absolute;
+  bottom: $spacer;
+  left: 50%;
+  z-index: 10;
+  width: 400px;
+  height: 400px;
+  margin-left: -200px;
+  background-image: url("../../assets/images/pages/signin/girl.png");
+  background-size: cover;
+
+  animation-name: floating;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+:host .yoga-shadow {
+  position: absolute;
+  bottom: $spacer;
+  left: 50%;
+  z-index: 9;
+  width: 300px;
+  height: 100px;
+  margin-left: -150px;
+  background-image: url("../../assets/images/pages/signin/shadow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  animation-name: shadow;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+:host .yoga-circle {
+  position: absolute;
+  z-index: 9;
+  border-radius: 50%;
+  // opacity: .5;
+
+  &.yoga-circle-1 {
+    top: 100px;
+    left: 100px;
+    width: 10px;
+    height: 10px;
+    background-color: theme-color-level("primary", 0);
+    animation-name: floatingOpacity;
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  &.yoga-circle-2 {
+    top: 200px;
+    left: 300px;
+    width: 20px;
+    height: 20px;
+    background-color: theme-color-level("primary", -6);
+    animation-name: floatingOpacity;
+    animation-duration: 6s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  &.yoga-circle-3 {
+    top: 50px;
+    left: 400px;
+    width: 8px;
+    height: 8px;
+    background-color: theme-color-level("primary", 2);
+    animation-name: floatingOpacity;
+    animation-duration: 8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  &.yoga-circle-4 {
+    top: 150px;
+    left: 350px;
+    width: 5px;
+    height: 5px;
+    background-color: theme-color-level("primary", 5);
+    animation-name: floatingOpacity;
+    animation-duration: 9s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  &.yoga-circle-5 {
+    top: 20px;
+    left: 150px;
+    width: 18px;
+    height: 18px;
+    background-color: theme-color-level("primary", 0);
+    animation-name: floatingOpacity;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  &.yoga-circle-6 {
+    top: 150px;
+    left: 200px;
+    width: 10px;
+    height: 10px;
+    background-color: theme-color-level("primary", -5);
+    animation-name: floatingOpacity;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes floating {
+  from {
+    transform: translate(0);
+  }
+  65% {
+    transform: translate(0, 15px);
+  }
+  to {
+    transform: translate(0, -1px);
+  }
+}
+
+@keyframes shadow {
+  from {
+    opacity: .3;
+  }
+  65% {
+    opacity: 1;
+  }
+  to {
+    opacity: .3;
+  }
+}
+
+@keyframes floatingOpacity {
+  from {
+    opacity: .2;
+    transform: translate(0);
+  }
+  65% {
+    opacity: .8;
+    transform: translate(0, 15px);
+  }
+  to {
+    opacity: .2;
+    transform: translate(0, -1px);
+  }
+}
