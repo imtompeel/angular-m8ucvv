@@ -1,0 +1,43 @@
+@import "~bootstrap-scss/modal";
+
+// Shell div to position the modal with bottom padding
+.modal-dialog.fade-left {
+  .modal.fade & {
+    @include transition($modal-transition);
+    transform: translate(25%, 0);
+  }
+
+  .modal.show & {
+    transform: translate(0, 0);
+  }
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+// Footer (for actions)
+.modal-footer {
+  background-color: lighten($color: theme-color-level("gray", -12), $amount: 1);
+  @include border-bottom-radius($modal-content-border-radius);
+}
+
+// Modal full height
+.modal-dialog.modal-dialog-tall {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  .modal-content {
+    flex: 1;
+    @include border-right-radius(0);
+  }
+}
+
+// Modal right position
+.modal-dialog.modal-dialog-right {
+  margin-right: 0;
+}

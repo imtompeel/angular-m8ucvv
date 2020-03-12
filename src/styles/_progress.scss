@@ -1,0 +1,14 @@
+// stylelint-disable selector-max-id
+
+@import "~bootstrap-scss/progress";
+@import "~nprogress/nprogress.css";
+
+#nprogress > .bar {
+  top: auto;
+  bottom: 0;
+  background-color: theme-color-level("primary", -5);
+
+  > .peg {
+    display: none;
+  }
+}

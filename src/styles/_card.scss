@@ -1,0 +1,5 @@
+@import "~bootstrap-scss/card";
+
+.card {
+  @include box-shadow(0 1px 8px -2px $border-color);
+}

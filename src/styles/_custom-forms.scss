@@ -1,0 +1,110 @@
+// stylelint-disable declaration-no-important, selector-max-class
+
+@import "~bootstrap-scss/custom-forms";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.custom-control-label {
+  vertical-align: top;
+}
+
+.ng-select {
+  .ng-select-container {
+    min-height: $input-height;
+    background-color: $white;
+    background-clip: padding-box;
+    border: $border-width solid $border-color;
+    border-radius: $border-radius;
+
+    .ng-value-container {
+      padding-left: $input-btn-padding-x;
+
+      .ng-placeholder {
+        color: $input-placeholder-color;
+      }
+    }
+
+    @include hover-focus {
+      @include box-shadow(none);
+    }
+  }
+
+  &.ng-select-focused:not(.ng-select-opened) {
+    > .ng-select-container {
+      border-color: $input-btn-focus-color;
+      @include box-shadow(none);
+    }
+  }
+
+  &.ng-select-single {
+    .ng-select-container {
+      height: auto;
+
+      .ng-value-container {
+        .ng-input {
+          top: 8px;
+          padding-left: $input-btn-padding-x;
+        }
+      }
+    }
+  }
+
+  &.ng-select-multiple {
+    .ng-placeholder {
+      top: 8px !important;
+    }
+
+    .ng-input {
+      padding-bottom: 7px !important;
+    }
+
+    .ng-value {
+      color: color-yiq(theme-color-level("primary", 0));
+      background-color: theme-color-level("primary", 0) !important;
+      border: $border-width solid theme-color-level("primary", 1) !important;
+      border-radius: $border-radius !important;
+
+      .ng-value-icon.left {
+        border-right: $border-width solid theme-color-level("primary", 1) !important;
+      }
+
+      .ng-value-icon:hover {
+        background-color: theme-color-level("primary", 1) !important;
+      }
+    }
+  }
+
+  &.ng-select-disabled > .ng-select-container {
+    background-color: $input-disabled-bg;
+  }
+
+  &.ng-select-opened > .ng-select-container {
+    border-color: $input-btn-focus-color;
+  }
+
+  .ng-arrow-wrapper {
+    padding-right: $input-btn-padding-x;
+  }
+}
+
+.ng-dropdown-panel {
+  &.ng-select-bottom {
+    border-color: $input-btn-focus-color;
+    border-top-color: $border-color;
+    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+
+  &.ng-select-top {
+    border-color: $input-btn-focus-color;
+    border-bottom-color: $border-color;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  .ng-dropdown-panel-items {
+    .ng-option {
+      padding-right: $input-btn-padding-x;
+      padding-left: $input-btn-padding-x;
+    }
+  }
+}

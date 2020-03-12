@@ -1,0 +1,9 @@
+// stylelint-disable declaration-no-important
+
+@import "~bootstrap-scss/utilities/text";
+
+@include text-emphasis-variant(".text-white", #fff);
+
+.font-weight-medium {
+  font-weight: $font-weight-medium !important;
+}

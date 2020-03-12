@@ -1,0 +1,12 @@
+// Font face
+
+// stylelint-disable declaration-colon-newline-after
+
+@mixin font-face($font-name, $path, $file-name, $weight, $style) {
+  @font-face {
+    font-family: $font-name;
+    font-style: $style;
+    font-weight: $weight;
+    src: url("#{$path}/#{$file-name}.woff2") format("woff2"), url("#{$path}/#{$file-name}.woff") format("woff");
+  }
+}

@@ -1,0 +1,11 @@
+@import "~bootstrap-scss/dropdown";
+
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  &.disabled,
+  &:disabled {
+    opacity: .4;
+  }
+}

@@ -1,0 +1,20 @@
+@import "~bootstrap-scss/badge";
+
+// Base class
+//
+// Requires one of the contextual, color modifier classes for `color` and
+// `background-color`.
+
+.badge {
+  letter-spacing: .5px;
+}
+
+// Colors
+//
+// Contextual variations (linked badges get darker on :hover).
+
+// @each $color, $value in $theme-colors {
+//   .badge-#{$color} {
+//     @include badge-variant-alt($color);
+//   }
+// }

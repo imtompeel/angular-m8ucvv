@@ -1,0 +1,67 @@
+$header-height:                     64px !default;
+
+$aside-shell-width:                  240px !default;
+$aside-shell-collapse-width:         84px !default;
+
+//
+// Wrapper
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+
+//
+// App header
+
+.app-header {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  height: $header-height;
+}
+
+
+//
+// App aside
+
+.app-aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.app-aside-shell {
+  width: $aside-shell-width;
+
+  .nav {
+    .nav-link {
+      color: inherit;
+    }
+  }
+}
+
+
+//
+// App main
+
+.app-main {
+  display: flex;
+  flex: 1;
+  // flex-direction: column;
+  min-height: 100%;
+}
+
+
+//
+// App content
+
+.app-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}

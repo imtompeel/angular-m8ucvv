@@ -1,0 +1,51 @@
+// stylelint-disable declaration-no-important
+// @import "~bootstrap/scss/utilities/background";
+
+// Generate `.bg-*` color utilities
+.bg-transparent {
+  color: inherit !important;
+  background-color: transparent !important;
+  fill: inherit !important;
+  stroke: inherit !important;
+}
+
+.bg-white {
+  color: color-yiq(#fff) !important;
+  background-color: #fff !important;
+  fill: color-yiq(#fff) !important;
+  stroke: color-yiq(#fff) !important;
+}
+.fill-white { fill: $white; }
+.stroke-white { fill: $white; }
+
+@each $color, $value in $theme-colors {
+  @include bg-variant(".bg-#{$color}-100", theme-color-level($color, -12));
+  @include bg-variant(".bg-#{$color}-200", theme-color-level($color, -9));
+  @include bg-variant(".bg-#{$color}-300", theme-color-level($color, -6));
+  @include bg-variant(".bg-#{$color}-400", theme-color-level($color, -3));
+  @include bg-variant(".bg-#{$color}-500", theme-color-level($color, 0));
+  @include bg-variant(".bg-#{$color}-600", theme-color-level($color, 3));
+  @include bg-variant(".bg-#{$color}-700", theme-color-level($color, 6));
+  @include bg-variant(".bg-#{$color}-800", theme-color-level($color, 9));
+  @include bg-variant(".bg-#{$color}-900", theme-color-level($color, 12));
+
+  @include fill-variant(".fill-#{$color}-100", theme-color-level($color, -12));
+  @include fill-variant(".fill-#{$color}-200", theme-color-level($color, -9));
+  @include fill-variant(".fill-#{$color}-300", theme-color-level($color, -6));
+  @include fill-variant(".fill-#{$color}-400", theme-color-level($color, -3));
+  @include fill-variant(".fill-#{$color}-500", theme-color-level($color, 0));
+  @include fill-variant(".fill-#{$color}-600", theme-color-level($color, 3));
+  @include fill-variant(".fill-#{$color}-700", theme-color-level($color, 6));
+  @include fill-variant(".fill-#{$color}-800", theme-color-level($color, 9));
+  @include fill-variant(".fill-#{$color}-900", theme-color-level($color, 12));
+
+  @include stroke-variant(".stroke-#{$color}-100", theme-color-level($color, -12));
+  @include stroke-variant(".stroke-#{$color}-200", theme-color-level($color, -9));
+  @include stroke-variant(".stroke-#{$color}-300", theme-color-level($color, -6));
+  @include stroke-variant(".stroke-#{$color}-400", theme-color-level($color, -3));
+  @include stroke-variant(".stroke-#{$color}-500", theme-color-level($color, 0));
+  @include stroke-variant(".stroke-#{$color}-600", theme-color-level($color, 3));
+  @include stroke-variant(".stroke-#{$color}-700", theme-color-level($color, 6));
+  @include stroke-variant(".stroke-#{$color}-800", theme-color-level($color, 9));
+  @include stroke-variant(".stroke-#{$color}-900", theme-color-level($color, 12));
+}

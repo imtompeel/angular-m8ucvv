@@ -1,0 +1,30 @@
+// stylelint-disable declaration-no-important
+
+@import "~bootstrap-scss/mixins/background-variant";
+
+@mixin bg-variant($parent, $color) {
+  #{$parent} {
+    color: color-yiq($color) !important;
+    background-color: $color !important;
+    fill: color-yiq($color) !important;
+    stroke: color-yiq($color) !important;
+  }
+  a#{$parent},
+  button#{$parent} {
+    @include hover-focus {
+      background-color: darken($color, 10%) !important;
+    }
+  }
+}
+
+@mixin fill-variant($parent, $color) {
+  #{$parent} {
+    fill: $color !important;
+  }
+}
+
+@mixin stroke-variant($parent, $color) {
+  #{$parent} {
+    stroke: $color !important;
+  }
+}
