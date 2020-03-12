@@ -1,0 +1,22 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "owners": {
+      ".read": "true",
+      "venues": {
+        "$venueKey": {
+          ".indexOn": ["cityId"]
+        }
+      }
+    },
+    "recordings": {
+      ".indexOn": ["venues"]
+    },
+    "artists": {
+      "$artistKey": {
+        ".indexOn": ["city"]
+      }
+    }
+  }
+}
