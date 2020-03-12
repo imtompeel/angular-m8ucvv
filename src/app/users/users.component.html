@@ -1,0 +1,28 @@
+<div class="container py-5">
+  <div class="row align-items-center">
+    <div class="col mr-auto">
+      <div class="d-flex align-items-end">
+        <h3 class="mb-0 mr-2">Users List</h3>
+        <span class="text-muted">({{ users.length }}) Total</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5"></div>
+  <ng-container *ngIf="users.length !== 0">
+    <ngx-datatable class="bootstrap" [rows]="users" [columnMode]="'force'" [headerHeight]="40" [footerHeight]="40"
+      [rowHeight]="70" [limit]="9" [sorts]="[{prop: 'name', dir: 'asc'}]">
+      <ngx-datatable-column name="Email" prop="username" resizeable="false" [width]="300">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+          <span class="small text-uppercase font-weight-medium text-muted" (click)="sort()"
+            style="cursor: pointer;">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+          <div class="d-flex align-items-center">
+            <h6 class="mb-0 font-weight-normal multi-line">{{ value }}</h6>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </ng-container>
+</div>
