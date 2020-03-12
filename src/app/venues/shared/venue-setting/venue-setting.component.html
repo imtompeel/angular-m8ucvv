@@ -1,0 +1,170 @@
+<form class="d-flex flex-column flex-fill" novalidate [formGroup]="formSetting" (ngSubmit)="save(formSetting.value, formSetting.valid)">
+    <div class="modal-header align-items-center">
+        <h4 class="modal-title mr-auto">{{venue.name}}</h4>
+        <a href="javascript:;" (click)="bsModalRef.hide()">
+            <svg class="icon fill-gray-300" viewBox="0 0 24 24">
+                <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" stroke="none" />
+            </svg>
+        </a>
+    </div>
+    <div class="scrollable scrollable-y">
+        <div class="scrollable-main">
+            <div class="scrollable-content">
+                <div class="modal-body">
+                    <div class="mb-3" *ngIf="error$ | async">
+                        <app-alert [type]="'danger'" [message]="(error$ | async)?.message"></app-alert>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="checkbox" formControlName="chkPoemLive" class="custom-control-checkbox mr-2">
+                        <label class="text-body">Poem is Live</label>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="checkbox" formControlName="chkOnlyOpeningHour" class="custom-control-checkbox mr-2">
+                        <label class="text-body">Only available during opening hours? </label>
+                    </div>
+
+                    <label>Opening times:</label>
+                    <div class="row" style="height: 30px">
+                        <div class="col-3">
+                            
+                        </div>
+                        <div class="col-5 form-group">
+                            <label class="text-muted">Start time</label>
+                        </div>
+                        <div class="col-4 form-group">
+                            <label class="text-muted">End time</label>
+                        </div>
+                    </div>
+
+                    <!-- Monday -->
+                    <div class="row week-row">
+                        <div class="col-2 row-header">
+                            <label class="text-muted">Mon:</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="startTimeMon">
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="endTimeMon">
+                        </div>
+                    </div>
+
+                    <!-- Tuesday -->
+                    <div class="row week-row">
+                        <div class="col-2 row-header">
+                            <label class="text-muted">Tues:</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="startTimeTue">
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="endTimeTue">
+                        </div>
+                    </div>
+
+                    <!-- Wedensady -->
+                    <div class="row week-row">
+                        <div class="col-2 row-header">
+                            <label class="text-muted">Wed:</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="startTimeWed">
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="endTimeWed">
+                        </div>
+                    </div>
+
+                    <!-- Thursday -->
+                    <div class="row week-row">
+                        <div class="col-2 row-header">
+                            <label class="text-muted">Thurs:</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="startTimeThu">
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="endTimeThu">
+                        </div>
+                    </div>
+
+                    <!-- Friday -->
+                    <div class="row week-row">
+                        <div class="col-2 row-header">
+                            <label class="text-muted">Fri:</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="startTimeFri">
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="endTimeFri">
+                        </div>
+                    </div>
+
+                    <!-- Satuday -->
+                    <div class="row week-row">
+                        <div class="col-2 row-header">
+                            <label class="text-muted">Sat:</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="startTimeSat">
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="endTimeSat">
+                        </div>
+                    </div>
+
+                    <!-- Sunday -->
+                    <div class="row week-row">
+                        <div class="col-2 row-header">
+                            <label class="text-muted">Sun:</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="startTimeSun">
+                        </div>
+                        <div class="col-5">
+                            <input type="time" class="form-control" formControlName="endTimeSun">
+                        </div>
+                    </div>
+
+                    <!-- Venue Website -->
+                    <div class="form-group mt-3">
+                        <label>Website</label>
+                        <input type="text" class="form-control" formControlName="website">
+                    </div>
+
+                    <!-- Venue Short Description -->
+                    <div class="form-group">
+                        <label>Short Description</label>
+                        <textarea class="form-control" formControlName="description" rows="4" cols="50"></textarea>
+                    </div>
+
+                    <!-- NFC ID -->
+                    <div class="form-group">
+                        <label>NFC discount</label>
+                        <input type="number" class="form-control-wrapper ml-2 mr-2" style="width: 50px;" formControlName="nfcDiscount"> % off
+                    </div>
+
+                    <div class="mb-2">
+                        Number of downloads: <span class="text-info">{{downloadCounts}}</span>
+                    </div>
+
+                    <div class="">
+                        Number of NFC interactions: <span class="text-info">{{nfcInteractions}}</span>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link text-body" (click)="bsModalRef.hide()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading || formSetting.invalid">
+            <app-spinner [ngClass]="{'active': isLoading}">Save Setting</app-spinner>
+        </button>
+    </div>
+</form>
+

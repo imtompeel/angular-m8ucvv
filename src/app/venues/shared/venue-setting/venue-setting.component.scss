@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.week-row {
+  padding-left: 16px;
+  margin-bottom: 4px;
+
+  .row-header {
+    max-width: 25%;
+    padding-top: 10px;
+  }
+
+  .row-col {
+    width: 38%;
+  }
+}

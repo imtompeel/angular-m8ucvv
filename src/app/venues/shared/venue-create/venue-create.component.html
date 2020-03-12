@@ -1,0 +1,107 @@
+<form class="d-flex flex-column flex-fill" novalidate [formGroup]="formCreate" (ngSubmit)="create(formCreate.value, formCreate.valid)">
+    <div class="modal-header align-items-center">
+        <h4 class="modal-title mr-auto">Create New Venue</h4>
+        <a href="javascript:;" (click)="bsModalRef.hide()">
+            <svg class="icon fill-gray-300" viewBox="0 0 24 24">
+                <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" stroke="none" />
+            </svg>
+        </a>
+    </div>
+    <div class="scrollable scrollable-y">
+        <div class="scrollable-main">
+            <div class="scrollable-content">
+                <div class="modal-body">
+                    <div class="mb-3" *ngIf="error$ | async">
+                        <app-alert [type]="'danger'" [message]="(error$ | async)?.message"></app-alert>
+                    </div>
+
+                    <p class="small text-uppercase text-info mb-3">Venue Information</p>
+
+                    <div style="margin-bottom: 24px">
+                        <span class="font-weight-bold text-danger">*</span>
+                        <span class="small font-weight-normal text-danger"> is required field</span>
+                    </div>
+
+                    <!-- Venue id -->
+                    <div class="form-group">
+                        <label>Unique identifer</label>
+                        <input type="text" class="form-control" formControlName="venueId">
+                    </div>
+
+                    <!-- Venue Name -->
+                    <div class="form-group">
+                        <label>Name</label><span class="font-weight-bold text-danger">*</span>
+                        <input type="text" class="form-control" formControlName="name">
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" formControlName="address">
+                    </div>
+                                        
+                    <!-- Venur Coordinator (Lat, Long) -->
+                    <label class="text-muted">Coordinator</label><span class="font-weight-bold text-danger">*</span>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Latitude</label>
+                                <input type="text" class="form-control" formControlName="latitude">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Longitude</label>
+                                <input type="text" class="form-control" formControlName="longitude">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distance -->
+                    <div class="form-group">
+                        <label>Distance</label><span class="font-weight-bold text-danger">*</span>
+                        <input type="text" class="form-control" formControlName="distance" pattern="[0-9]*">
+                    </div>
+                    
+                    <!-- Venue Administrator Email -->
+                    <!-- <div class="form-group">
+                        <label>Administrator email</label>
+                        <input type="text" class="form-control" formControlName="email">
+                    </div> -->
+                    
+                    <!-- Venue Short Description -->
+                    <div class="form-group">
+                        <label>Short Description</label>
+                        <textarea class="form-control" formControlName="description" rows="4" cols="50"></textarea>
+                    </div>
+
+                    <!-- Venue Website -->
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input type="text" class="form-control" formControlName="website">
+                    </div>
+
+                    <!-- Venue Photo -->
+                    <!-- <div class="form-group">
+                        <label>Upload Photo</label>
+                        <app-uploader fileType="image" fieldName="big-picture"></app-uploader>
+                    </div> -->
+
+                    <!-- NFC ID -->
+                    <!-- <div class="form-group">
+                        <label>NFC ID</label>
+                        <input type="text" class="form-control" formControlName="nfcId">
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link text-body" (click)="bsModalRef.hide()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading || formCreate.invalid">
+            <app-spinner [ngClass]="{'active': isLoading}">Create Venue</app-spinner>
+        </button>
+    </div>
+</form>
+
